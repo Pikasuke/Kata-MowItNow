@@ -3,10 +3,16 @@
 Usage
 =====
 
-Pour lancer l'application de manière avec un fichier :
+Pour lancer l'application avec un fichier :
 
 ``` sh
 mvn exec:java -Dexec.args="yourFile.txt"
+```
+
+Pour lancer l'application sans un fichier :
+
+``` sh
+mvn exec:java
 ```
 
 Pour lancer l'ensemble des tests :
