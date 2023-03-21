@@ -17,6 +17,7 @@
         <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <slf4j-api.version>2.0.6</slf4j-api.version>
         <slf4j-simple.version>2.0.6</slf4j-simple.version>
+        <surefire-logger-api.version>3.0.0-M5</surefire-logger-api.version>
     </properties>
 
     <dependencies>
@@ -44,7 +45,7 @@
         <dependency>
             <groupId>org.apache.maven.surefire</groupId>
             <artifactId>surefire-logger-api</artifactId>
-            <version>3.0.0-M5</version>
+            <version>${surefire-logger-api.version}</version>
             <scope>test</scope>
         </dependency>
 

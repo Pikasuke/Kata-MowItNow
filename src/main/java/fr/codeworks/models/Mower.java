@@ -53,23 +53,24 @@ public class Mower {
     }
 
     public void foward() {
-        if (orientation.equals(Cardinals.N) && garden.isInVerticalLimits(getY()+1)) {
+        if (orientation == Cardinals.N && garden.isInVerticalLimits(getY()+1)) {
             setY(getY()+1);
         }
-        if (orientation.equals(Cardinals.S) && garden.isInVerticalLimits(getY()-1)) {
+        if (orientation == Cardinals.S && garden.isInVerticalLimits(getY()-1)) {
             setY(getY()-1);
         }
-        if (orientation.equals(Cardinals.E) && garden.isInHorizontalLimits(getX()+1)) {
+        if (orientation == Cardinals.E && garden.isInHorizontalLimits(getX()+1)) {
             setX(getX()+1);
         }
-        if (orientation.equals(Cardinals.W) && garden.isInHorizontalLimits(getX()-1)) {
+        if (orientation == Cardinals.W && garden.isInHorizontalLimits(getX()-1)) {
             setX(getX()-1);
         }
     }
 
     public void turn(String way) {
+        assert way!= null;
         String cardinals = "";
-        for (Enum cardinal: Cardinals.values()) {
+        for (Cardinals cardinal: Cardinals.values()) {
             cardinals = cardinals+cardinal;
         }
         int indexOfCardinals = cardinals.indexOf(orientation.toString());

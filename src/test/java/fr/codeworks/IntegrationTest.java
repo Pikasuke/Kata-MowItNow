@@ -1,5 +1,7 @@
 package fr.codeworks;
 
+import fr.codeworks.models.Remote;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -10,11 +12,9 @@ import java.io.InputStream;
 public class IntegrationTest {
     @Test
     public void testMain() throws IOException {
-        System.out.println("main");
-        final InputStream original = System.in;
-        final FileInputStream fips = new FileInputStream(new File("src/main/resources/file.txt"));
-        System.setIn(fips);
-        System.setIn(original);
+        Assertions.assertEquals("1 3 N 5 1 E", Remote.mowerExecutionInstruction("src/main/resources/file.txt"));
+
+
     }
 
 }

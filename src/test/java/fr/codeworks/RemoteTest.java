@@ -25,7 +25,7 @@ public class RemoteTest {
         mower.setGarden(new Garden(5,5));
         mower.execute("AADAADADDA");
         String result = Remote.sendPosition(mower);
-        Assertions.assertEquals("5 1 E ", result);
+        Assertions.assertEquals("5 1 E", result);
     }
 
     @Test

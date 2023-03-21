@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Remote {
@@ -32,7 +33,7 @@ public class Remote {
     }
 
     public static String sendPosition(Mower mower) {
-        return String.valueOf(mower.getX())+ " " + String.valueOf(mower.getY()) + " " + mower.getOrientation().toString()+ " ";
+        return String.valueOf(mower.getX())+ " " + String.valueOf(mower.getY()) + " " + mower.getOrientation().toString();
     }
 
     public static Garden createGarden(List<String> instruction) {
@@ -48,8 +49,8 @@ public class Remote {
     public static List<String> loadInstruction(String fileName) {
         try {
             Path pathFile = Paths.get(fileName);
-            Files.exists(pathFile);
-            Files.isRegularFile(pathFile);
+            assert Files.exists(pathFile);
+            assert Files.isRegularFile(pathFile);
             return Files.readAllLines(pathFile);
         } catch (Exception e) {
             LOGGER.error("Load instruction failed");
@@ -57,12 +58,12 @@ public class Remote {
         }
     }
 
-    public static void mowerExecutionInstruction(String fileName) {
+    public static String mowerExecutionInstruction(String fileName) {
         List<String> instructionFiles = Remote.loadInstruction(fileName);
         LOGGER.info("instruction Files  {}", instructionFiles);
 
         Garden garden = Remote.createGarden(instructionFiles);
-        String mowersFinalPosition = "";
+        List<String> mowersFinalPositions = new ArrayList<>();
         Mower mower = new Mower();
         for (int i = 1; i < instructionFiles.size() ; i++) {
             boolean isMower = i % 2 == 1;
@@ -74,10 +75,10 @@ public class Remote {
             if (isInstruction) {
                 String instruction = instructionFiles.get(i);
                 mower.execute(instruction);
-                mowersFinalPosition = mowersFinalPosition + Remote.sendPosition(mower);
+                mowersFinalPositions.add(Remote.sendPosition(mower));
             }
         }
-        LOGGER.info("result   {}", mowersFinalPosition);
+        return String.join(" ",mowersFinalPositions);
     }
 
 }

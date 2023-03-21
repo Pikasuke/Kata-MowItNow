@@ -92,20 +92,20 @@ public class MowerTest {
     public void afterFowardCoordonateChange() {
         mower.execute("A");
         String result = Remote.sendPosition(mower);
-        Assertions.assertEquals("1 2 N ", result);
+        Assertions.assertEquals("1 2 N", result);
     }
 
     @Test
     public void afterADDAGGInstructionsMowerIsSamePosition() {
         mower.execute("ADDAGG");
         String result = Remote.sendPosition(mower);
-        Assertions.assertEquals("1 1 N ", result);
+        Assertions.assertEquals("1 1 N", result);
     }
     @Test
     public void afterReceivedInstructionsMowerGivesItsPosition() {
         mower.execute("GAGAGAGAA");
         String result = Remote.sendPosition(mower);
-        Assertions.assertEquals("1 2 N ", result);
+        Assertions.assertEquals("1 2 N", result);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class MowerTest {
         mower.setOrientation(Cardinals.E);
         mower.execute("AADAADADDA");
         String result = Remote.sendPosition(mower);
-        Assertions.assertEquals("5 1 E ", result);
+        Assertions.assertEquals("5 1 E", result);
     }
 
 }
